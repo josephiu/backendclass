@@ -1,6 +1,231 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
 /******* Change Box Model ***************/
-*,
+/* *,
 *:before,
-*:after {
+*:after { */
+
+*{
   box-sizing: border-box;
+  margin:0rem;
+  padding:0rem;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal; 
+  /* max-width: 500px;  */
+
 }
+
+/* 
+// <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 100 to 900
+
+.exo-<uniquifier> {
+  font-family: "Exo", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+} */
+
+/* * header, main, footer{
+  max-width: 600px;
+} */
+
+
+
+/* Head*/
+
+header{
+  height: 100px;
+  display: flex; 
+  padding: 1rem; 
+  justify-content:space-between;
+  
+ 
+ 
+
+}
+header a {
+  text-decoration: none; 
+
+}
+
+
+
+.siteName a{
+  font-size: 5vh;  
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+
+  
+
+}
+
+header:nth-child(1){
+  align-self:flex-start; 
+
+}
+
+
+
+
+#tools{
+ 
+  
+  text-align: right;    
+}
+
+/* Navigation*/
+
+nav ul{
+ 
+  background-color: black;
+  color: beige;
+  display: flex;
+  padding: 1.5rem;
+  justify-content: space-evenly;
+  list-style: none;
+  font-family:Arial;
+}
+
+/* index*/
+
+h1{
+  font-size: 30pt;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-left: 1rem;
+}
+
+.contianer1{
+  display: flex; 
+ 
+  position: relative;
+  margin-left: 1rem;
+
+  
+
+}
+
+picture img{
+display: block;
+max-width: 100%;
+height: auto;
+padding: 2rem;
+display: block;
+  
+  
+}
+
+#action_Container1{
+  position: absolute;
+  background: rgba(64, 76, 235, 0.3);
+  padding: 0.5rem;
+  display: block;
+  
+  
+}
+
+
+h3 {
+  font-size: 20pt;
+  padding-bottom: 0.5rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.container2{
+ margin-left: 1rem;
+}
+
+h2 {
+  font-size: 20pt;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+#Reviews_list{
+  font-size: 15pt;
+  padding-left: 2rem;
+}
+
+#upgrages_cards{
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  padding-bottom: 2rem;
+  
+
+  
+}
+
+#card1 div img, #card2 div img, #card3 div img, #card4 div img  {
+  width: auto;;
+  height: auto;
+  padding: 1rem;
+ 
+  
+ 
+}
+
+#card1 div, #card2 div, #card3 div, #card4 div {
+  background-color: rgb(40, 245, 245);
+  width: 150PX; 
+  height: 100PX; 
+  border: 0.05rem solid rgb(0, 0, 0);
+ 
+  text-align: center;
+  overflow: hidden;
+  /* padding: 1rem; */
+  
+ 
+  
+}
+
+#card1 a, #card2 a, #card3 a, #card4 a {
+  font-size: 15pt;
+
+}
+
+footer{
+  margin-left: 1rem;
+  padding-top: 0.5rem;
+  
+  padding-bottom: 1rem;
+  border-top: 0.2rem solid rgb(148, 148, 148);
+
+}
+
+@media screen  and (min-width: 700px){
+
+:root{
+    background: url(/images/site/checkerboard.jpg);
+    background-color: aqua;
+    right: 20PX;
+    
+  
+}
+
+body{
+  max-width: 700px;
+  background-color: rgb(255, 255, 255);
+  border: solid 0.5rem blue;
+  border-radius: 2rem;
+  margin-left: 5rem;
+  /* margin-right: 5rem; */
+
+ 
+}
+.container2{
+  display: flex;
+  justify-content:space-around;
+  padding: 1rem;
+}
+}
+  
+  
+
