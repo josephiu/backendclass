@@ -13,6 +13,7 @@ const static = require("./routes/static")
 const expressLayouts = require("express-ejs-layouts")
 const inventoryRoute = require("./routes/inventoryRoute")
 const utilities = require("./utilities")
+const errorRoute = require('./routes/errorRoute'); 
 
 /* ***********************
  * View Engine and Templates
@@ -33,6 +34,8 @@ app.use(static)
 app.get("/", utilities.handleErrors(baseController.buildHome))
 app.use("/inv", inventoryRoute)
 
+app.use(errorRoute);
+
 
 
 
@@ -49,16 +52,35 @@ app.use(async (req, res, next) => {
 *************************/
 
 
+// app.use(async (err, req, res, next) => {
+//   let nav = await utilities.getNav()
+
+//   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+//   if (err.status == 404){ message = err.message} else {message = 'Oh no! There was a crash. Maybe try a differnt route?'}
+//   res.render("errors/error", {
+//     title: err.status ||'Server Error',
+  
+//     message,
+//     nav
+//   })
+// })
+
 app.use(async (err, req, res, next) => {
-  let nav = await utilities.getNav()
-  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  if (err.status == 404){ message = err.message} else {message = 'Oh no! There was a crash. Maybe try a differnt route?'}
+  let nav = await utilities.getNav();
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`);
+  // Set a custom message for the error
+  const message = err.status == 404 ? err.message : 'Oh no! There was a crash. Maybe try a different route?';
+  // Set custom title for status 500
+  const title = err.status === 500 ? 'Server Error' : err.status || 'Error';
   res.render("errors/error", {
-    title: err.status || 'Server Error',
+    title,  // Use the custom title
     message,
     nav
-  })
-})
+  });
+});
+
+
+
 
 
 /* ***********************

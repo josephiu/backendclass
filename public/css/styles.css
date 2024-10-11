@@ -79,17 +79,43 @@ header:nth-child(1){
 }
 
 /* Navigation*/
-
-nav ul{
- 
-  background-color: black;
-  color: beige;
-  display: flex;
-  padding: 1.5rem;
-  justify-content: space-evenly;
-  list-style: none;
-  font-family:Arial;
+nav {
+  font-size: 2rem;
+  background-color: rgb(150, 185, 182);
 }
+
+ nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around; 
+} 
+
+nav ul li {
+  cursor: pointer;
+  padding: 0.5rem;
+  flex: auto;
+  text-align: center;
+
+}
+
+nav ul li a{
+  text-decoration: none;
+  color: rgb(19, 4, 20);
+}
+
+
+nav ul li:hover {
+  background-color: chocolate;
+  color: white;
+} 
+
+
+
+
+
+
 
 /* index*/
 
@@ -191,6 +217,52 @@ h2 {
 
 }
 
+
+#inv-display{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  overflow: hidden;
+  padding: 2rem;
+  
+
+}
+
+#inv-display li{
+  background-color: rgb(212, 247, 247);
+  list-style-type: none;
+  
+  padding: 1rem;  
+}
+
+
+#inv-display li a {
+  text-decoration: none;
+
+}
+
+#inv-display li a img{
+  display: block;
+  width: 100%;
+  height: auto;
+
+}
+
+#V-display{
+  display: flex;
+ flex-wrap: wrap;
+ gap: 1rem;
+ padding: 1rem;
+}
+
+#V-display > * {
+  flex: 1;
+}
+
+
+
+
+
 footer{
   margin-left: 1rem;
   padding-top: 0.5rem;
@@ -198,7 +270,27 @@ footer{
   padding-bottom: 1rem;
   border-top: 0.2rem solid rgb(148, 148, 148);
 
+
 }
+@media all and (max-width: 500px){
+
+  nav ul{
+    flex-direction: column;
+    background-color: rgb(150, 185, 182);
+  }
+  nav ul li {
+    text-align: center;
+  }
+  nav ul li a{
+    text-decoration: none;
+    color: rgb(19, 4, 20);
+  }
+
+} 
+
+
+
+
 
 @media screen  and (min-width: 700px){
 
@@ -211,20 +303,45 @@ footer{
 }
 
 body{
-  max-width: 700px;
+  width: 90%;
   background-color: rgb(255, 255, 255);
   border: solid 0.5rem blue;
   border-radius: 2rem;
-  margin-left: 5rem;
-  /* margin-right: 5rem; */
-
+  margin-left: 5%;
+  margin-top: 2%;
+  margin-bottom: 2%;
  
 }
+
+
+.contianer1{
+  display: grid;
+  grid-auto-flow: column;
+}
+
+
+.contianer1 picture img{
+  display: grid;
+  width: 250vh;
+  grid-auto-flow: column;
+}
+
+
+
+
 .container2{
   display: flex;
   justify-content:space-around;
   padding: 1rem;
 }
+
+/* grid{
+  align-self:flex-start; 
+
+} */
+
+
+
 }
   
   

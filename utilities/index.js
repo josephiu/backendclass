@@ -59,6 +59,43 @@ Util.buildClassificationGrid = async function(data){
     return grid
   }
 
+
+
+
+
+/* **************************************
+* Build the inventory div for the view HTML
+* ************************************ */
+Util.buildInventorydiv= async function(data){
+  let V_Display
+  if(data.length > 0){
+    V_Display = '<div id="V-display">'
+    V_Display += '<div id="V-detail-left">'
+    
+    V_Display += '<img src="'+ data[0].inv_image +'" alt="Image of'+ data[0].inv_make + ' ' + data[0].inv_model + '"> ' + '</div>'   
+    
+    V_Display += '<div id="V-detail-right">'
+    V_Display += '<h3>' + data[0].inv_make + ' ' + data[0].inv_model + ' ' + 'Details </h3>'
+    V_Display += '<p><strong>Price:</strong> $' + new Intl.NumberFormat('en-US').format(data[0].inv_price) + '</p>'
+    V_Display += '<p><strong>Description:</strong> ' + data[0].inv_description + '</p>'
+    V_Display += '<p><strong>color:</strong> ' + data[0].inv_color + '</p>'
+    V_Display += '<p><strong>Miles:</strong> ' + data[0].inv_miles + '</p>'
+    V_Display += '</div>'
+    V_Display += '</div>'
+
+  } else { 
+    V_Display += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+  }
+  return V_Display
+}
+
+
+
+
+
+
+
+
   /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
