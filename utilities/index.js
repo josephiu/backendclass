@@ -79,7 +79,7 @@ Util.buildInventorydiv= async function(data){
     V_Display += '<p><strong>Price:</strong> $' + new Intl.NumberFormat('en-US').format(data[0].inv_price) + '</p>'
     V_Display += '<p><strong>Description:</strong> ' + data[0].inv_description + '</p>'
     V_Display += '<p><strong>color:</strong> ' + data[0].inv_color + '</p>'
-    V_Display += '<p><strong>Miles:</strong> ' + data[0].inv_miles + '</p>'
+    V_Display += '<p><strong>Miles:</strong> ' + new Intl.NumberFormat('en-US').format(data[0].inv_miles) + ' miles</p>'
     V_Display += '</div>'
     V_Display += '</div>'
 
