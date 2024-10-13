@@ -63,11 +63,13 @@ Util.buildClassificationGrid = async function(data){
 
 
 
+
 /* **************************************
 * Build the inventory div for the view HTML
 * ************************************ */
 Util.buildInventorydiv= async function(data){
   let V_Display
+  
   if(data.length > 0){
     V_Display = '<div id="V-display">'
     V_Display += '<div id="V-detail-left">'
