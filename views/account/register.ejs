@@ -3,10 +3,17 @@
     <h1><%= title %></h1> 
     <% } else {  
         res.redirect('/') 
-       } %>  
-     
+       } %>       
 
     <%- messages() %>
+    <% if (errors) { %>
+        <ul class="notice">
+       <% errors.array().forEach(error => { %>
+         <li><%= error.msg %></li>
+      <%  }) %>
+       </ul>
+      <% } %>
+
 
     <%# grid %>
 
@@ -15,18 +22,24 @@
         <form id="login-form" action="/account/register"  method="post">
 
             <label for="account_firstnamee"> First name:</label><br>
-            <input type="text" id="first_name" name="account_firstname" placeholder="John" required><br>
+            <input type="text" id="first_name" name="account_firstname" placeholder="John" required value="<%= locals.account_firstname %>"><br>
 
             <label for="account_lastname"> Last name:</label><br>
-            <input type="text" id="last_name" name="account_lastname" placeholder="Doe" required><br>
+            <input type="text" id="last_name" name="account_lastname" placeholder="Doe" required value="<%= locals.account_lastname %>"><br>
 
            
             <label for="account_email"> Email:</label><br>
-            <input type="email" id="email" name="account_email" placeholder="Enter your Email Address " required><br>
+            <input type="email" id="email" name="account_email" placeholder="Enter your Email Address " required value="<%= locals.account_email %>"><br>
 
+            
+                
             <label for="account_password"> Password:</label><br>
-            <input type="password" id="password" name="account_password" placeholder="Enter your Password" required>
-
+            <input type="password" id="password" name="account_password" placeholder="Enter your Password" 
+                pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required> <br>
+                <span>Password must be at least 12 characters, one must be a number, one must be a lowercase letter, one must be a capital letter, and one must be a non-alphanumeric character</span>
+            
+            
+            
             <div class="wrap">
                 <button id="login-button" type="submit" > Register </button>
             </div>
