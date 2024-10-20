@@ -1,0 +1,41 @@
+<!-- //contents -->
+<% if (title) { %> 
+    <h1><%= title %></h1> 
+    <% } else {  
+        res.redirect('/') 
+       } %>  
+     
+
+    <%- messages() %>
+
+    <%# grid %>
+
+<div id="login-container">
+<h3>Please Fill the registration form</h3>
+        <form id="login-form" action="/account/register"  method="post">
+
+            <label for="account_firstnamee"> First name:</label><br>
+            <input type="text" id="first_name" name="account_firstname" placeholder="John" required><br>
+
+            <label for="account_lastname"> Last name:</label><br>
+            <input type="text" id="last_name" name="account_lastname" placeholder="Doe" required><br>
+
+           
+            <label for="account_email"> Email:</label><br>
+            <input type="email" id="email" name="account_email" placeholder="Enter your Email Address " required><br>
+
+            <label for="account_password"> Password:</label><br>
+            <input type="password" id="password" name="account_password" placeholder="Enter your Password" required>
+
+            <div class="wrap">
+                <button id="login-button" type="submit" > Register </button>
+            </div>
+        </form>
+        <!-- <p>Not registered?
+            <a href="/account/register" style="text-decoration: none;"> Create an account</a>
+        </p> -->
+    </div>
+</div>
+
+
+   

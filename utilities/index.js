@@ -93,6 +93,20 @@ Util.buildInventorydiv= async function(data){
 
 
 
+//Js code for the passowrd
+// const pswdBtn = Document.querySelector("#pswBtn")
+// pswdBtn.addEventLister("click", function() {
+//   const pswdInput = document.getElementById("pword");
+//   const type = pswdInput.getAttribute("type");
+//   if (type == "password"){
+//     pswdInput.setAttribute("type", "text");
+//     pswdBtn.innerHTML = "Hide Password";    
+//   } else {
+//     pswdInput.setAttribute("type", "password");
+//     pswdBtn.innerHTML = "Show password"
+//   }
+// })
+
 
 
 

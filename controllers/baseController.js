@@ -6,6 +6,8 @@ const baseController = {}
 
 baseController.buildHome = async function(req, res){
   const nav = await utilities.getNav()
+  //This line below will make sending message to the page easy
+  // req.flash("notice", "This is a flash message.")
   res.render("index", {title: "Home", nav})
 }
 

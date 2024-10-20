@@ -96,13 +96,15 @@ nav ul li {
   cursor: pointer;
   padding: 0.5rem;
   flex: auto;
-  text-align: center;
+  text-align: center; 
 
 }
 
 nav ul li a{
   text-decoration: none;
   color: rgb(19, 4, 20);
+  font-size: 15pt;
+  font-weight:900;
 }
 
 
@@ -272,7 +274,59 @@ footer{
 
 
 }
-@media all and (max-width: 500px){
+
+#login-container{
+  background-color: wheat;
+  width: 100%;
+  height: auto;
+  /* border: solid rgb(6, 16, 105) 0.5rem; */
+  border-radius: 0.5rem;
+  justify-content: center;
+  padding: 1rem;
+  
+}
+
+label{
+  font-family:'Roboto, Oxygen, Ubuntu, Cantarell';
+
+  font-size: larger;
+}
+
+
+ 
+#email, #password, #first_name, #last_name{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#login-button{
+  background-color: #04AA6D;
+  width: 100%;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+#login-container h3{
+  color: #0b5339;
+  font-size: 15pt;
+  
+}
+
+
+
+
+
+
+@media all and (max-width: 570px){
 
   nav ul{
     flex-direction: column;
@@ -286,13 +340,13 @@ footer{
     color: rgb(19, 4, 20);
   }
 
+  
+
 } 
 
 
 
-
-
-@media screen  and (min-width: 700px){
+@media screen  and (min-width: 570px){
 
 :root{
     background: url(/images/site/checkerboard.jpg);
@@ -334,6 +388,21 @@ body{
   justify-content:space-around;
   padding: 1rem;
 }
+
+#login-container{
+  background-color: wheat;
+  width: 500px;
+  height: auto;
+  /* border: solid rgb(6, 16, 105) 0.5rem; */
+  border-radius: 0.5rem;
+  justify-content: center;
+  padding: 1rem;
+  
+}
+
+
+
+
 
 /* grid{
   align-self:flex-start; 

@@ -5,6 +5,8 @@
 /* ***********************
  * Require Statements
  *************************/
+const session = require("express-session")
+const pool = require('./database/')
 const express = require("express")
 const baseController = require("./controllers/baseController")
 const env = require("dotenv").config()
@@ -13,7 +15,38 @@ const static = require("./routes/static")
 const expressLayouts = require("express-ejs-layouts")
 const inventoryRoute = require("./routes/inventoryRoute")
 const utilities = require("./utilities")
-const errorRoute = require('./routes/errorRoute'); 
+const errorRoute = require('./routes/errorRoute')
+const accountRoute = require('./routes/accountRoute')
+const bodyParser = require("body-parser")
+
+
+
+/* ***********************
+ * Middleware
+ * ************************/
+app.use(session({
+  store: new (require('connect-pg-simple')(session))({
+    createTableIfMissing: true,
+    pool,
+  }),
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true,
+  name: 'sessionId',
+}))
+
+
+// Express Messages Middleware
+app.use(require('connect-flash')())
+app.use(function(req, res, next){
+  res.locals.messages = require('express-messages')(req, res)
+  next()
+})
+
+
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 /* ***********************
  * View Engine and Templates
@@ -33,11 +66,11 @@ app.use(static)
 // app.get("/", baseController.buildHome)  ----before  we added the robust error handling
 app.get("/", utilities.handleErrors(baseController.buildHome))
 app.use("/inv", inventoryRoute)
+app.use("/account", accountRoute)
+
+
 
 app.use(errorRoute);
-
-
-
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
@@ -83,6 +116,12 @@ app.use(async (err, req, res, next) => {
 
 
 
+
+
+
+
+
+
 /* ***********************
  * Local Server Information
  * Values from .env (environment) file
@@ -96,3 +135,5 @@ const host = process.env.HOST
 app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`)
 })
+
+
