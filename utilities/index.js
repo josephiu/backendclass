@@ -93,6 +93,12 @@ Util.buildInventorydiv= async function(data){
 
 
 
+
+
+
+
+
+
 //Js code for the passowrd
 // const pswdBtn = Document.querySelector("#pswBtn")
 // pswdBtn.addEventLister("click", function() {

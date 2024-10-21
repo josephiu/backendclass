@@ -2,6 +2,7 @@
 const experess = require("express") 
 const router = new experess.Router()
 const invController = require("../controllers/invController")
+const utilities = require("../utilities")
 
 
 
@@ -11,6 +12,12 @@ router.get("/type/:classificationId", invController.buildByClassificationId);
 
 //Route to build vehicle view 
 router.get("/detail/:vehicle_view", invController.buildByVehicle_Details);
+
+//Route to build managemnet view 
+
+router.get("/management/", utilities.handleErrors(invController.buildmanagement))
+
+
 
 
 

@@ -21,6 +21,8 @@ invCont.buildByClassificationId = async function (req, res, next) {
 
 
 
+
+
 /* ***************************
  *  single selections for the vehicl 
  * ************************** */
@@ -36,6 +38,18 @@ invCont.buildByVehicle_Details = async function (req, res, next) {
     div,
   })
 }
+
+// Deliver mangement view
+//* *************************************** */
+invCont.buildmanagement = async function(req, res, next) {
+  let nav = await utilities.getNav()  
+  res.render("./inventory/management", {
+    title: "Management",
+    nav,    
+    errors: null
+  })
+}
+
 
 
 
