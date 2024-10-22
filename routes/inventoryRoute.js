@@ -20,12 +20,12 @@ router.get("/management/", utilities.handleErrors(invController.buildmanagement)
 
 
 // Route to build the Add Classification view
-router.get("/inventory/ad", utilities.handleErrors(invController.buildaddclassification));
+router.get("/inventory/add-classification", utilities.handleErrors(invController.buildaddclassification));
                                                                      
 
 // Route to process the Add Classification view
 router.post(
-    "/ad", 
+    "/add-classification", 
     addClassValidate.classificationRules(),
     addClassValidate.checkclassData ,
     utilities.handleErrors(invController.addclassificationProcessing)
