@@ -3,6 +3,8 @@ const experess = require("express")
 const router = new experess.Router()
 const invController = require("../controllers/invController")
 const utilities = require("../utilities")
+const addClassValidate = require('../utilities/addclassification-validation')
+
 
 
 
@@ -14,13 +16,20 @@ router.get("/type/:classificationId", invController.buildByClassificationId);
 router.get("/detail/:vehicle_view", invController.buildByVehicle_Details);
 
 //Route to build managemnet view 
-
-router.get("/management/", utilities.handleErrors(invController.buildmanagement))
-
+router.get("/management/", utilities.handleErrors(invController.buildmanagement));
 
 
+// Route to build the Add Classification view
+router.get("/inventory/ad", utilities.handleErrors(invController.buildaddclassification));
+                                                                     
 
-
+// Route to process the Add Classification view
+router.post(
+    "/ad", 
+    addClassValidate.classificationRules(),
+    addClassValidate.checkclassData ,
+    utilities.handleErrors(invController.addclassificationProcessing)
+);
 
 
 module.exports = router;

@@ -48,6 +48,33 @@ async function getInventoryByInventory_id(inventory_id) {
 
 
 
+/* *****************************
+*   Add new  classification
+* *************************** */
+async function AddClassification(classification_name){
+  try {
+    const sql = "INSERT INTO classification (classification_name, account_type) VALUES ($1,'Client') RETURNING *"
+    return await pool.query(sql, [classification_name])
+  } catch (error) {
+    return error.message
+  }
+}
+
+/* **********************
+*   Check for existing classification
+* ********************* */
+async function checkExistingClassification(classification_name){
+try {
+  const sql = "SELECT * FROM  classification WHERE classification_name = $1"
+  const className = await pool.query(sql, [classification_name])
+  return className.rowCount
+} catch (error) {
+  return error.message
+}
+}
 
 
-module.exports = {getClassifications, getInventoryByClassificationId, getInventoryByInventory_id };
+
+
+
+module.exports = {getClassifications, getInventoryByClassificationId, getInventoryByInventory_id, AddClassification, checkExistingClassification };

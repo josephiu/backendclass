@@ -1,5 +1,35 @@
 <% if (title) { %> 
     <h1><%= title %></h1> 
-     <% } else {  
-     res.redirect('/') 
-    } %>  
+    <% } else {  
+        res.redirect('/') 
+       } %>  
+     
+
+    <%- messages() %>
+    <% if (errors) { %>
+        <ul class="notice">
+       <% errors.array().forEach(error => { %>
+         <li><%= error.msg %></li>
+      <%  }) %>
+       </ul>
+      <% } %>
+
+
+    <%# grid %>
+
+<div id="login-container">
+<h3> Please feild is required</h3>
+        <form id="login-form" action="/inventory/add-classification" method="post">
+            <label for="classification_name"> Email:</label><br>
+            <input type="text" id="classsification" name="classification_name" placeholder="Enter text no spaces" required value="<%= locals.classification_name %> "><br>
+
+            <span> Note: classification name cannot contain a space or special character of any kind</span>
+                        
+            <div class="wrap">
+                <button id="login-button" type="submit" > Add Classification </button>
+            </div>
+        </form>
+        
+    </div>
+</div>
+

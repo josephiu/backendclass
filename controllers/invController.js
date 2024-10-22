@@ -16,6 +16,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
     title: className + " vehicles",
     nav,
     grid,
+    
   })
 }
 
@@ -36,6 +37,8 @@ invCont.buildByVehicle_Details = async function (req, res, next) {
     title: Vehicle_make,
     nav,
     div,
+    
+    
   })
 }
 
@@ -46,12 +49,58 @@ invCont.buildmanagement = async function(req, res, next) {
   res.render("./inventory/management", {
     title: "Management",
     nav,    
-    errors: null
+    errors: null,
   })
 }
 
 
 
+
+// //* *************************************** */
+// // Deliver classification view
+// //* *************************************** */
+invCont.buildaddclassification = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("./inventory/add-classification", {
+    title: "Add Classificaton",
+    nav,
+    errors: null,
+  })
+}
+
+/* ****************************************
+*  Process Registration
+* *************************************** */
+invCont.addclassificationProcessing = async function (req, res) {
+  let nav = await utilities.getNav()  
+
+  const { classification_name} = req.body 
+
+  const regResult = await invModel.AddClassification(
+    classification_name
+    
+  )
+
+  if (regResult) {
+    req.flash(
+      "notice",
+      `Congratulations, ${classification_name} is added sucessfully.`
+    )
+    res.render("./inventory/add-classification", { 
+      title: "Add Classificaton",
+      nav,
+      errors: null,
+    })
+  
+  } else {
+    req.flash("notice", "Sorry, the Classication Faild to add.")
+    res.status(501).render("./inventory/add-classification", {
+      title: "Add Classificaton ",
+      nav,
+      errors:null,
+    })
+  }
+}
 
 
 
