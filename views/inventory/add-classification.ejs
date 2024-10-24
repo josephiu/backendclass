@@ -19,8 +19,8 @@
 
 <div id="login-container">
 <h3> Please feild is required</h3>
-        <form id="login-form" action="/add-classification" method="post">
-            <label for="classification_name"> Email:</label><br>
+        <form id="login-form" action="add-classification" method="post">
+            <label for="classification_name"> ADD CLASSIFICATION:</label><br>
             <input type="text" id="classsification" name="classification_name" placeholder="Enter text no spaces" required value="<%= locals.classification_name %> "><br>
 
             <span> Note: classification name cannot contain a space or special character of any kind</span>

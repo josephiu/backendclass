@@ -62,7 +62,7 @@ invCont.buildmanagement = async function(req, res, next) {
 // //* *************************************** */
 invCont.buildaddclassification = async function (req, res, next) {
   let nav = await utilities.getNav()
-  res.render("./inventory/add-classification", {
+  res.render("inventory/add-classification", {
     title: "Add Classificaton",
     nav,
     errors: null,
@@ -87,7 +87,7 @@ invCont.addclassificationProcessing = async function (req, res) {
       "notice",
       `Congratulations, ${classification_name} is added sucessfully.`
     )
-    res.render("./inventory/add-classification", { 
+    res.render("inventory/add-classification", { 
       title: "Add Classificaton",
       nav,
       errors: null,
@@ -95,7 +95,7 @@ invCont.addclassificationProcessing = async function (req, res) {
   
   } else {
     req.flash("notice", "Sorry, the Classication Faild to add.")
-    res.status(501).render("./inventory/add-classification", {
+    res.status(501).render("inventory/add-classification", {
       title: "Add Classificaton ",
       nav,
       errors:null,
