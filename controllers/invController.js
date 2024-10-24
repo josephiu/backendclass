@@ -81,12 +81,14 @@ invCont.addclassificationProcessing = async function (req, res) {
     classification_name
     
   )
+  console.log(regResult)
 
   if (regResult) {
     req.flash(
       "notice",
       `Congratulations, ${classification_name} is added sucessfully.`
     )
+   
     res.render("inventory/add-classification", { 
       title: "Add Classificaton",
       nav,

@@ -30,7 +30,7 @@ const utilities = require(".")
  * Check data and return errors or continue to classification
  * ***************************** */
 validate.checkclassData = async (req, res, next) => {
-    const { classification_name} = req.body
+    const {classification_name} = req.body
     let errors = []
     errors = validationResult(req)
     if (!errors.isEmpty()) {
