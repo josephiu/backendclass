@@ -16,6 +16,8 @@ invCont.buildByClassificationId = async function (req, res, next) {
     title: className + " vehicles",
     nav,
     grid,
+    errors: null,
+
    
     
   })
@@ -38,6 +40,8 @@ invCont.buildByVehicle_Details = async function (req, res, next) {
     title: Vehicle_make,
     nav,
     div,
+    errors: null,
+
     
     
   })
@@ -58,7 +62,7 @@ invCont.buildmanagement = async function(req, res, next) {
 
 
 // //* *************************************** */
-// // Deliver classification view
+// // Deliver addclassification view
 // //* *************************************** */
 invCont.buildaddclassification = async function (req, res, next) {
   let nav = await utilities.getNav()
@@ -69,11 +73,32 @@ invCont.buildaddclassification = async function (req, res, next) {
   })
 }
 
+
+// //* *************************************** */
+// // Deliver addinventory view
+// //* *************************************** */
+invCont.buildaddinventory= async function (req, res, next) {
+  let nav = await utilities.getNav()
+  let classificationList = await utilities.buildClassificationList()
+  res.render("inventory/add-inventory", {
+    title: "Add Inventory",
+    classificationList ,
+    nav,
+    errors: null,
+  })
+}
+
+
+
+
+
+
 /* ****************************************
 *  Process Registration
 * *************************************** */
 invCont.addclassificationProcessing = async function (req, res) {
   let nav = await utilities.getNav()  
+
 
   const { classification_name} = req.body 
 
@@ -88,6 +113,7 @@ invCont.addclassificationProcessing = async function (req, res) {
       "notice",
       `Congratulations, ${classification_name} is added sucessfully.`
     )
+    let nav = await utilities.getNav()//I redeclared the navication bar to help it refresh on its own
    
     res.render("inventory/add-classification", { 
       title: "Add Classificaton",
@@ -104,6 +130,58 @@ invCont.addclassificationProcessing = async function (req, res) {
     })
   }
 }
+
+
+
+
+
+/* ****************************************
+*  Process add-inventory
+* *************************************** */
+invCont.addinventoryProcessing = async function (req, res) {
+  let nav = await utilities.getNav()  
+  let classificationList = await utilities.buildClassificationList()
+
+
+  const { classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_color } = req.body
+
+  const regResult = await invModel.AddNewinventory(
+    classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_color
+    
+  )
+  console.log(regResult)
+
+  if (regResult) {
+    req.flash(
+      "notice",
+      `Congratulations, Your ${inv_make} Vehicle is added sucessfully.`
+    )
+    let nav = await utilities.getNav()//I redeclared the navication bar to help it refresh on its own
+   
+    res.render("./inventory/management", {
+      title: "Management",
+      nav,    
+      errors: null,
+    })
+  
+  
+  
+  } else {
+    req.flash("notice", "Sorry, the Classication Faild to add.")
+    res.status(501).render("inventory/add-inventory", {
+      title: "Add Classificaton ",
+      classificationList,
+      nav,
+      errors:null,
+    })
+  }
+}
+
+
+
+
+
+
 
 
 

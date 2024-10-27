@@ -4,6 +4,8 @@ const router = new experess.Router()
 const invController = require("../controllers/invController")
 const utilities = require("../utilities")
 const addClassValidate = require('../utilities/addclassification-validation')
+const inventoryValidate = require('../utilities/inventory-validation')
+
 
 
 
@@ -31,5 +33,18 @@ router.post(
     utilities.handleErrors(invController.addclassificationProcessing)
 );
 
+// Route to build the Add Classification view
+router.get("/inventory/add-inventory/", utilities.handleErrors(invController.buildaddinventory));
+
+
+
+// Route to process the Add inventory view
+router.post(
+    "/inventory/add-inventory/", 
+    inventoryValidate.inventoryRules(),
+    inventoryValidate.checkinvData,
+    utilities.handleErrors(invController.addinventoryProcessing)
+);
+        
 
 module.exports = router;
