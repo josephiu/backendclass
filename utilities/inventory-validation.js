@@ -80,12 +80,13 @@ validate.checkinvData = async (req, res, next) => {
     let errors = []
     errors = validationResult(req)
     if (!errors.isEmpty()) {
+      
       let nav = await utilities.getNav()
       res.render("inventory/add-inventory", {
         errors,
         title: "Add Inventory",
         nav,
-        classification_id, 
+        classification_id,
         inv_make, 
         inv_model, 
         inv_description,         

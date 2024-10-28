@@ -140,7 +140,7 @@ invCont.addclassificationProcessing = async function (req, res) {
 * *************************************** */
 invCont.addinventoryProcessing = async function (req, res) {
   let nav = await utilities.getNav()  
-  let classificationList = await utilities.buildClassificationList()
+ 
 
 
   const { classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_color } = req.body
