@@ -5,6 +5,7 @@
 /* ***********************
  * Require Statements
  *************************/
+
 const session = require("express-session")
 const pool = require('./database/')
 const express = require("express")
@@ -18,6 +19,7 @@ const utilities = require("./utilities")
 const errorRoute = require('./routes/errorRoute')
 const accountRoute = require('./routes/accountRoute')
 const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
 
 
 
@@ -43,10 +45,14 @@ app.use(function(req, res, next){
   next()
 })
 
-
-
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
+app.use(cookieParser())
+app.use(utilities.checkJWTToken)
+app.use("/account", accountRoute)
+
+
 
 /* ***********************
  * View Engine and Templates
@@ -66,7 +72,6 @@ app.use(static)
 // app.get("/", baseController.buildHome)  ----before  we added the robust error handling
 app.get("/", utilities.handleErrors(baseController.buildHome))
 app.use("/inv", inventoryRoute)
-app.use("/account", accountRoute)
 
 
 

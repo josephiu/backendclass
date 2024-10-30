@@ -18,7 +18,7 @@ router.get("/type/:classificationId", invController.buildByClassificationId);
 router.get("/detail/:vehicle_view", invController.buildByVehicle_Details);
 
 //Route to build managemnet view 
-router.get("/management/", utilities.handleErrors(invController.buildmanagement));
+router.get("/", utilities.handleErrors(invController.buildmanagement));
 
 
 // Route to build the Add Classification view
