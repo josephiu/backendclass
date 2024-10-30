@@ -16,7 +16,6 @@
       <% } %>
 
 
-
    
 
     
@@ -31,32 +30,32 @@
         <%- classificationList %> <br>
 
         <label for="inv_make "> Make:</label><br>
-        <input type="text" id="make" name="inv_make " placeholder="Make of your car " required value="<%= locals.inv_make  %>"><br>
+        <input type="text" id="inv_make" name="inv_make" placeholder="Make of your car " required value="<%= locals.inv_make  %>"><br>
 
         <label for="inv_model"> Model:</label><br>
-        <input type="text" id="model" name="inv_model " placeholder="Model of your car " required value="<%= locals.inv_model  %> "><br><br>
+        <input type="text" id="inv_model" name="inv_model" placeholder="Model of your car " required value="<%= locals.inv_model  %> "><br><br>
 
         <legend>Descriptions</legend>        
-        <textarea name="inv_description" rows="4" cols="auto" required value="<%= locals.inv_description  %>" ></textarea> <br><br>
+         <textarea name="inv_description" rows="4" cols="auto" required><%= locals.inv_description %></textarea><br><br>
 
-        <legend>Image</legend>          
-        <input type="text" id="invimage" value="/public/images/vehicles/no-image.png"  alt="logo" required > <br>
+        <label for="inv_image"> Image:</label>       
+        <input type="text" id="inv_image" name="inv_image" placeholder="/images/vehicles/no-image.png" value="<%= locals.inv_image %>" required> <br>
         
-        <legend>Thumbnai</legend>    
-        <input type="inv_thumbnail" id="invthumbnail" value="/public/images/vehicles/no-image-tn.png" alt="thumbnail" required> <br>
+        <label for="inv_thumbnail"> Thumbnai:</label>   
+        <input type="text" id="inv_thumbnail" name="inv_thumbnail" placeholder="/images/vehicles/no-image-tn.png" value="<%= locals.inv_thumbnail %>" required> <br>
         
 
         <label for="inv_price"> Price </label> <br>
-        <input type="text" id="invrice" name="inv_price " pattern="^\d*\.?\d+$"  placeholder="decimal or integer " required value="<%= locals.inv_price %> "><br>
+        <input type="text" id="inv_price" name="inv_price" pattern="^\d*\.?\d+$" placeholder="decimal or integer" required value="<%= locals.inv_price %> "><br>
 
         <labe for="inv_year"> Year</label></label><br>
-        <input type="text" id="invyear" name="inv_year" pattern="^\d{4}$" placeholder="4 digits" required value="<%= locals.inv_year  %> "><br>
+        <input type="text" id="nv_year" name="inv_year" pattern="^\d{4}$" placeholder="4 digits" required value="<%= locals.inv_year %> "><br>
 
         <label for="inv_miles"> Miles</label><br>
-        <input type="text" id="invmiles" name="inv_miles" pattern="^\d*\.?\d+$" placeholder="numbers or decimal " required value="<%= locals.inv_miles  %> "><br>
+        <input type="number" id="inv_miles" name="inv_miles" pattern="^\d*\.?\d+$" placeholder="numbers or decimal " required value="<%= locals.inv_miles  %> "><br>
 
         <label for="inv_color"> color</label><br>
-        <input type="text" id="invcolor" name="inv_color" placeholder="Color of Car " required value="<%= locals.inv_color %> "><br>
+        <input type="text" id="inv_color" name="inv_color" placeholder="Color of Car " required value="<%= locals.inv_color %> "><br>
 
          
         <div class="wrap">

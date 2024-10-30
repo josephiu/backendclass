@@ -36,13 +36,17 @@ router.post(
 // Route to build the Add Classification view
 router.get("/inventory/add-inventory/", utilities.handleErrors(invController.buildaddinventory));
 
+// Route to build the add vehicle view
+router.get(
+    "/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON));
+
 
 
 // Route to process the Add inventory view
 router.post(
     "/inventory/add-inventory/", 
-    inventoryValidate.inventoryRules(),
-    inventoryValidate.checkinvData,
+    // inventoryValidate.inventoryRules(),
+    // inventoryValidate.checkinvData,
     utilities.handleErrors(invController.addinventoryProcessing)
 );
         

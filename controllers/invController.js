@@ -66,7 +66,7 @@ invCont.buildmanagement = async function(req, res, next) {
 // //* *************************************** */
 invCont.buildaddclassification = async function (req, res, next) {
   let nav = await utilities.getNav()
-  res.render("inventory/add-classification", {
+  res.render("./inventory/add-classification", {
     title: "Add Classificaton",
     nav,
     errors: null,
@@ -80,7 +80,7 @@ invCont.buildaddclassification = async function (req, res, next) {
 invCont.buildaddinventory= async function (req, res, next) {
   let nav = await utilities.getNav()
   let classificationList = await utilities.buildClassificationList()
-  res.render("inventory/add-inventory", {
+  res.render("./inventory/add-inventory", {
     title: "Add Inventory",
     classificationList ,
     nav,
@@ -139,46 +139,81 @@ invCont.addclassificationProcessing = async function (req, res) {
 *  Process add-inventory
 * *************************************** */
 invCont.addinventoryProcessing = async function (req, res) {
-  let nav = await utilities.getNav()  
-  let classificationList = utilities.buildClassificationList
-
- 
+  let nav = await utilities.getNav()   
 
 
-  const { classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_color } = req.body
+  const {  inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    inv_color,
+    classification_id} = req.body
 
-  const regResult = await invModel.AddNewinventory(
-    classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_color
+  const regResult = await invModel.AddNewinventory( inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    inv_color,
+    classification_id
     
   )
   console.log(regResult)
+  console.log(classification_id)
+  console.log(inv_image)
+
+  
+
 
   if (regResult) {
+    let classificationList = utilities.buildClassificationList()
     req.flash(
       "notice",
       `Congratulations, Your ${inv_make} Vehicle is added sucessfully.`
     )
     
-    res.render("/management", {
+    res.render("./inventory/management", {
       title: "Management",
       classificationList,
       nav,    
       errors: null,
+      inv_make,
+      inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_color,
+
     })
 
-    
-  
+      
   
   
   } else {
     req.flash("notice", "Sorry, the Classication Faild to add.")
-    res.status(501).render("/inventory/add-inventory/", {
+    let classificationList = utilities.buildClassificationList()
+    res.status(501).render("./inventory/add-inventory/", {
       title: "Add Classificaton ",
       classificationList,
       nav,
       errors:null,
     })
   }
+}
+
+  // Return Inventory by Classification As JSON
+
+invCont.getInventoryJSON = async (req, res, next) => {
+ const classification_id = parseInt(req.params.classification_id)
+ const invData = await invModel.getInventoryByClassificationId(classification_id)
+ if (invData[0].inv_id) {
+   return res.json(invData)
+ } else {
+   next(new Error("No data returned"))
+ }
 }
 
 
