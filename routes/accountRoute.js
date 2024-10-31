@@ -33,6 +33,8 @@ router.post(
 
 router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildAccountManagement))
 
+router.get("/logout", utilities.handleErrors(accountController.logoutAccount));
+
 
 
 module.exports = router;

@@ -50,7 +50,6 @@ app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-
 
 app.use(cookieParser())
 app.use(utilities.checkJWTToken)
-app.use("/account", accountRoute)
 
 
 
@@ -73,7 +72,7 @@ app.use(static)
 app.get("/", utilities.handleErrors(baseController.buildHome))
 app.use("/inv", inventoryRoute)
 
-
+app.use("/account", accountRoute)
 
 app.use(errorRoute);
 

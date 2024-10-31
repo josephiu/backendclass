@@ -50,5 +50,17 @@ router.post(
     utilities.handleErrors(invController.addinventoryProcessing)
 );
         
+// Route to build the add vehicle view
+router.get(
+    "/getInventory/:classification_id",
+    utilities.handleErrors(invController.getInventoryJSON)
+  );
+
+
+// Route to build the edit vehicle view
+router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventoryView));
+
+
+
 
 module.exports = router;

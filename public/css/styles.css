@@ -346,6 +346,58 @@ input:required:invalid, input:focus:invalid {
  */
 
 
+/* Management Section */
+#managemtent {
+  margin: 20px 0;
+}
+
+#managemtent li {
+  list-style: none;
+  margin: 5px 0;
+}
+
+#managemtent li a {
+  color: #004080;
+  text-decoration: none;
+}
+
+#managemtent li a:hover {
+  text-decoration: underline;
+}
+
+/* Form & Select Styling */
+p label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+#classificationList {
+  padding: 5px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  width: 200px;
+}
+
+/* Inventory Display Table */
+#inventoryDisplay {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#inventoryDisplay th, #inventoryDisplay td {
+  padding: 10px;
+  border: 1px solid #cccccc;
+  text-align: left;
+}
+
+
+
+
+
+
+
+
 @media all and (max-width: 570px){
 
   nav ul{

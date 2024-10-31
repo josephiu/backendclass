@@ -265,3 +265,16 @@ UPDATE public.inventory
 --Quesiton number 6: updating two solumns at once using REPLACE keyword
 UPDATE public.inventory
 	SET inv_image= REPLACE(inv_image,'/images','/images/vehicles'), inv_thumbnail=REPLACE(inv_image,'/images','/images/vehicles');
+
+
+
+
+
+
+  update account
+set account_type = 'Admin'
+where account_id = 4;
+ 
+update account
+set account_type = 'Employee'
+where account_id = 3
