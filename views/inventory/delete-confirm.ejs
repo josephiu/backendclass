@@ -1,0 +1,59 @@
+<!-- //contents -->
+<% if (title) { %> 
+    <h1><%= title %></h1> 
+    <% } else {  
+        res.redirect('/') 
+       } %>  
+     
+
+    <%- messages() %>
+    <% if (errors) { %>
+        <ul class="notice">
+       <% errors.array().forEach(error => { %>
+         <li><%= error.msg %></li>
+      <%  }) %>
+       </ul>
+      <% } %>
+
+
+   
+
+    
+
+<div id="login-container">
+<h3>Please all fields are required</h3>
+        <form id="addinv-form" action="/inv/delete" method="post">
+       
+
+           
+        <label for="inv_make "> Make:</label><br>
+        <input type="text" id="inv_make" name="inv_make" placeholder="Make of your car " required readonly value="<%= locals.inv_make  %>"><br>
+
+        <label for="inv_model"> Model:</label><br>
+        <input type="text" id="inv_model" name="inv_model" placeholder="Model of your car " required readonly value="<%= locals.inv_model  %> "><br><br>
+
+               
+        
+
+        <label for="inv_price"> Price </label> <br>
+        <input type="text" id="inv_price" name="inv_price" pattern="^\d*\.?\d+$" placeholder="decimal or integer" required readonly value="<%= locals.inv_price %> "><br>
+
+        <labe for="inv_year"> Year</label></label><br>
+        <input type="text" id="nv_year" name="inv_year" pattern="^\d{4}$" placeholder="4 digits" required readonly value="<%= locals.inv_year %> "><br>
+
+        
+         
+        <div class="wrap">
+                <button id="login-button" type="submit" > Delete Vehicle </button>
+                <p>Confirm Deletion - because this is irriversable.</p>
+        </div>
+
+        <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%=
+        locals.inv_id %>"
+        <% } %>>
+
+
+        </form>       
+    </div>
+</div>
+

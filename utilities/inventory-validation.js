@@ -24,6 +24,21 @@ const utilities = require(".")
         .isLength({ min: 2 })
         .withMessage("Please provide the make."), // on error this message is sent.
 
+
+        
+
+      // model is required and must be string
+      body("inv_model")
+      .trim()
+      .escape()
+      .notEmpty()
+      .isLength({ min: 2 })
+      .withMessage("Please provide the model."), // on error this message is sent.
+
+
+
+
+
           // Description is required and must be string
       body("inv_description")
         .trim()
@@ -65,6 +80,18 @@ const utilities = require(".")
         .isLength({ min:2 })
         .withMessage("Integer or decimal is required"), // on error this message is sent. 
 
+
+        body("inv_image")
+      .trim()
+      .isLength({ min: 3 })
+      .withMessage("Image path must be at least 3 characters long."),
+ 
+    // vehicle thumbnail is required
+    body("inv_thumbnail")
+      .trim()
+      .isLength({ min: 3 })
+      .withMessage("Image path must be at least 3 characters long."),
+
       
     ]},
  
@@ -76,7 +103,7 @@ const utilities = require(".")
  * Check data and return errors or continue to registration
  * ***************************** */
 validate.checkinvData = async (req, res, next) => {
-    const { classification_id, inv_make, inv_model, inv_description, inv_price, inv_year, inv_color } = req.body
+    const { classification_id, inv_make, inv_model, inv_description,inv_thumbnail, inv_image, inv_miles, inv_price, inv_year, inv_color } = req.body
     let errors = []
     errors = validationResult(req)
     if (!errors.isEmpty()) {
@@ -93,6 +120,9 @@ validate.checkinvData = async (req, res, next) => {
         inv_price, 
         inv_year, 
         inv_color,
+        inv_miles,
+        inv_image,
+        inv_thumbnail
       })
       return
     }

@@ -45,8 +45,8 @@ router.get(
 // Route to process the Add inventory view
 router.post(
     "/inventory/add-inventory/", 
-    // inventoryValidate.inventoryRules(),
-    // inventoryValidate.checkinvData,
+     //inventoryValidate.inventoryRules(),
+     //inventoryValidate.checkinvData,
     utilities.handleErrors(invController.addinventoryProcessing)
 );
         
@@ -61,6 +61,17 @@ router.get(
 router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventoryView));
 
 
+
+
+router.post("/update/", invController.updateInventory)
+
+
+// Route to build the delete vehicle view
+router.get("/delete/:inv_id", utilities.handleErrors(invController.deleteInventoryView));
+
+router.post(
+    "/delete/", utilities.handleErrors(invController.deleteInventory)
+  );
 
 
 module.exports = router;

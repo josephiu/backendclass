@@ -36,5 +36,27 @@ router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.b
 router.get("/logout", utilities.handleErrors(accountController.logoutAccount));
 
 
+router.get("/update",
+  utilities.handleErrors(utilities.checkJWTToken),
+  utilities.handleErrors(accountController.buildUpdateAccount));
+
+
+// Account update route
+router.post(
+  "/update",
+  // regValidate.acctUpdateRules(),
+  // regValidate.checkAccData,
+  utilities.handleErrors(accountController.updateAccount)
+);
+
+
+// Account change password route
+router.post(
+  "/change-password",
+  // regValidate.passwordChangeRules(),
+  // regValidate.checkPasswordChangeData,
+  utilities.handleErrors(accountController.changePassword)
+);
+
 
 module.exports = router;

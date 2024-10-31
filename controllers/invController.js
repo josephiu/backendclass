@@ -105,9 +105,9 @@ invCont.addclassificationProcessing = async function (req, res) {
   const { classification_name} = req.body 
 
   const regResult = await invModel.AddClassification(
-    classification_name
-    
+    classification_name  
   )
+  
   console.log(regResult)
 
   if (regResult) {
@@ -116,11 +116,12 @@ invCont.addclassificationProcessing = async function (req, res) {
       `Congratulations, ${classification_name} is added sucessfully.`
     )
     let nav = await utilities.getNav()//I redeclared the navication bar to help it refresh on its own
-   
+    const classficationList = await utilities.buildClassificationList()
     res.render("inventory/add-classification", { 
       title: "Add Classificaton",
       nav,
       errors: null,
+      classficationList,
     })
   
   } else {
@@ -167,10 +168,7 @@ invCont.addinventoryProcessing = async function (req, res) {
     classification_id
     
   )
-  console.log(regResult)
-  console.log(classification_id)
-  console.log(inv_image)
-
+  
   
 
 
@@ -258,8 +256,127 @@ invCont.editInventoryView = async function (req, res, next) {
 
 
 
+invCont.updateInventory = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  const {
+    inv_id,
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color,
+    classification_id,
+  } = req.body
+  const updateResult = await invModel.updateInventory(
+    inv_id,  
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color,
+    classification_id
+  )
+ 
+  if (updateResult) {
+    const itemName = updateResult.inv_make + " " + updateResult.inv_model
+    req.flash("success", `The ${itemName} was successfully updated.`);
+    res.redirect("/inv/")
+  } else {
+    const classificationSelect = await utilities.buildClassificationList(classification_id)
+    const itemName = `${inv_make} ${inv_model}`
+    req.flash("notice", "Sorry, the insert failed.")
+    res.status(501).render("inventory/edit-inventory", {
+    title: "Edit " + itemName,
+    nav,
+    classificationSelect: classificationSelect,
+    errors: null,
+    inv_id,
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    inv_color,
+    classification_id
+    })
+  }
+}
 
 
+/* ***************************
+ *  Build delete inventory view
+ * ************************** */
+invCont.deleteInventoryView = async function (req, res, next) {
+  const inv_id = parseInt(req.params.inv_id);
+  let nav = await utilities.getNav();
+  const itemDataArray = await invModel.getInventoryByInvId(inv_id);
+  const itemData = itemDataArray[0]; // Access the first element of the array instead of adding on res.render
+  //console.log(itemData);
+  if (!itemData) {
+    req.flash("error", "Item not found");
+    return res.redirect("/inv");
+  }
+ 
+  const itemName = `${itemData.inv_make} ${itemData.inv_model}`;
+  res.render("./inventory/delete-confirm", {
+    title: "Delete " + itemName,
+    nav,
+    errors: null,
+    inv_id: itemData.inv_id,
+    inv_make: itemData.inv_make,
+    inv_model: itemData.inv_model,
+    inv_year: itemData.inv_year,
+    inv_price: itemData.inv_price,
+  });
+};
+
+
+invCont.deleteInventory = async function (req, res, next) {
+  let nav = await utilities.getNav();
+  const {
+    inv_id,
+    inv_make,
+    inv_model,
+    inv_price,
+    inv_year,
+  } = req.body;
+  const updateResult = await invModel.deleteInventoryItem(
+    inv_id,
+    inv_make,
+    inv_model,
+    inv_price,
+    inv_year,
+  );
+ 
+  const itemName = updateResult.inv_make + " " + updateResult.inv_model;
+  if (updateResult) {
+    req.flash("success", `The vehicle was successfully deleted.`);
+    res.redirect("/inv/");
+  } else {    
+    req.flash("notice", "Sorry, the insert failed.");
+    res.status(501).render("inventory/edit-inventory", {
+      title: "Edit " + itemName,
+      nav,
+      errors: null,
+      inv_id,
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_price,
+    });
+  }
+};
 
 
 module.exports = invCont
