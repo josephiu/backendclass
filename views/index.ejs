@@ -1,5 +1,31 @@
+
+
+
+    <!-- <div class="cookie-banner" id="cookie-banner">
+        <p>This site uses cookies to enhance your experience. By clicking "Accept and Continue," you consent to our cookie policy.</p>
+        <form action="/accept-cookie" method="post">
+            <button type="submit">Accept and Continue</button>
+        </form>
+    </div>
+
+ -->
+
+
+
 <%- messages() %>
-<h1>Welcome to CSE Motors!</h1>
+
+<% if (showCookieBanner) { %>
+    <div id="cookie-banner" class="cookie-banner">
+        <p>This site uses cookies to enhance your experience. By clicking "Accept and Continue," you consent to our cookie policy.</p>
+        <button id="accept-cookie-btn">Accept and Continue</button>
+    </div>
+    <% } %>
+</main>
+
+
+
+
+<!-- <h1>Welcome to CSE Motors!</h1> -->
 <div class="contianer1">
     <picture>
         <source srcset="/images/vehicles/delorean-tn.jpg" media="(max-width: 200px)">        
@@ -59,3 +85,17 @@
     </div>
         
 </div> 
+
+
+<script>
+    document.getElementById("accept-cookie-btn").addEventListener("click", function () {
+        fetch('/cookies/accept-cookie', { method: 'POST' })
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById("cookie-banner").style.display = "none";
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    });
+</script>
+

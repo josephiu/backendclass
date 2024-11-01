@@ -120,31 +120,13 @@ Util.buildClassificationList = async function (classification_id = null) {
 
 
 
-//Js code for the passowrd
-// const pswdBtn = Document.querySelector("#pswBtn")
-// pswdBtn.addEventLister("click", function() {
-//   const pswdInput = document.getElementById("pword");
-//   const type = pswdInput.getAttribute("type");
-//   if (type == "password"){
-//     pswdInput.setAttribute("type", "text");
-//     pswdBtn.innerHTML = "Hide Password";    
-//   } else {
-//     pswdInput.setAttribute("type", "password");
-//     pswdBtn.innerHTML = "Show password"
-//   }
-// })
-
-
-
-
-
-
   /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
  * General Error Handling
  **************************************** */
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
+
 
 /* ****************************************
 * Middleware to check token validity
@@ -181,6 +163,7 @@ Util.checkLogin = (req, res, next) => {
     return res.redirect("/account/login")
   }
  }
+
 
 
 

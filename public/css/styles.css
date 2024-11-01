@@ -392,9 +392,156 @@ p label {
 }
 
 
+/* Cookie Banner Styling */
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  z-index: 1000;
+}
+
+.cookie-banner p {
+  display: inline;
+  margin: 0;
+  padding-right: 15px;
+}
+
+.cookie-banner button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.cookie-banner button:hover {
+  background-color: #45a049;
+}
 
 
+/* Main Content */
+main {
+  padding: 20px;
+}
 
+h1 {
+  color: #007BFF;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+h2, h3 {
+  margin: 15px 0;
+  color: #444;
+}
+
+p {
+  margin-bottom: 15px;
+}
+
+/* Link Styling for Management Items */
+.manageItem {
+  display: inline-block;
+  color: #fff;
+  background-color: #007BFF;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.manageItem:hover {
+  background-color: #0056b3;
+}
+
+/* General Form Styles */
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+fieldset {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+legend {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Input Wrapper and Labels */
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.input-wrapper label {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Button Styles */
+.login-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Valid and Invalid Input Styles */
+input:valid {
+  background-color: #ccffd9; /* Light green for valid */
+  border-color: #00b33c;
+}
+
+input:invalid {
+  background-color: #ffccff; /* Light magenta for invalid */
+  border-color: #e60073;
+}
+
+/* Password Requirements */
+.pass-requ {
+  font-size: 12px;
+  color: #666;
+  margin-top: 5px;
+}
 
 
 

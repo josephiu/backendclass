@@ -20,12 +20,16 @@ const errorRoute = require('./routes/errorRoute')
 const accountRoute = require('./routes/accountRoute')
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
+// const express = require("express");
+// const cookieParser = require("cookie-parser");
+const cookieRoute = require("./routes/cookieRoute");
 
 
 
 /* ***********************
  * Middleware
  * ************************/
+
 app.use(session({
   store: new (require('connect-pg-simple')(session))({
     createTableIfMissing: true,
@@ -49,8 +53,21 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 app.use(cookieParser())
+
 app.use(utilities.checkJWTToken)
 
+
+
+// app.use(static)
+app.use(express.static("public"))
+// app.use("/", cookieRoute)
+
+app.use("/cookies", cookieRoute)
+
+app.use((req, res, next) => {
+  res.locals.showCookieBanner = !req.cookies.acceptedCookies; // true if cookie is not accepted
+  next();
+});
 
 
 /* ***********************
@@ -64,7 +81,6 @@ app.set("layout", "./layouts/layout") // not at views root
 /* ***********************
  * Routes
  *************************/
-app.use(static)
 
 
 //Index route

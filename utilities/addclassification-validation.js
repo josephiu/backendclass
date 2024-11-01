@@ -14,7 +14,7 @@ const utilities = require(".")
         .trim()
         .notEmpty()
         .matches(/^[a-zA-Z0-9]*$/) //to ensure no space or special character
-        .notEmpty()
+        
         .isLength({ min: 1 })
         .withMessage("Please fill Out this field.") // on error this message is sent.
         .custom(async (classification_name) => {
